@@ -1,8 +1,3 @@
-require_relative '../config'
-
-class Task < ActiveRecord::Base
-end
-
 input = ARGV
 todolist = TodoList.new
 
