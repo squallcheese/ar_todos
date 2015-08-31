@@ -3,13 +3,17 @@ require_relative 'app/controllers/controller_tasks'
 
 #puts "Put your application code in #{File.expand_path(__FILE__)}"
 
-puts "Type todo.rb list to Display all To Do"
-puts "Type todo.rb add to Add new To Do"
-puts "Type todo.rb update to Update existing To Do"
-puts "Type todo.rb delete to Delete existing To Do"
+
+puts 'To Do List'
+puts "Type 'todo.rb list' to Display all To Do"
+puts "Type 'todo.rb add' to Add new To Do"
+puts "Type 'todo.rb update' to Update existing To Do"
+puts "Type 'todo.rb delete' to Delete existing To Do"
 puts ""
 
-input = ARGV
+input = ARGV.each do |a|
+  puts "#{a}"
+end
 
 # p "input #{input}"
 
@@ -20,17 +24,12 @@ input = ARGV
   ControllerTask.add(input[1..-1].join(" "))
 
   elsif input[0] == "delete"
-  puts "Deleted #{ControllerTask.task_text(input[1].to_i)} from your To Do List..."
   ControllerTask.delete(input[1].to_i)
 
-  elsif input[0] == "complete"
+  elsif input[0] == "update"
   ControllerTask.update(input[1].to_i)
-  #puts list
 
   else
-  "No such command"
+  puts "Incorrect command"
 
-  end
-
-
-
+end

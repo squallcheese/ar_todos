@@ -13,22 +13,27 @@ class ControllerTask
       elsif x.completion == 0.to_s
         TaskView.display_incomplete(index+1, x.task_text)
       end
+      #p lists
     end
   end
 
-  def self.add(task_text)
-    tasks = Task.create(task_text: "")
+
+  def self.add(text)
+    task = Task.create(task_text: " ")
     TaskView.display_added
-    tasks.save
+    task.save
   end
 
-  def self.delete(id)
-    Task.destroy(id)
+  def self.delete(task_id)
+    task = Task.find(id: task_id.to_i)
+    TaskView.display_deleted
+    task.destroy
   end
 
-  def self.update_completeness(id)
-    tasks = Task.find(id)
-    tasks[:completion] = 1
-    tasks.save
+  def self.update(task_id)
+    task = Task.find(id: task_id.to_i)
+    task.completion == 1.to_s
+    TaskView.display_completed
+    task.save
   end
 end
